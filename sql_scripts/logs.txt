@@ -1,0 +1,23 @@
+CREATE TABLE if not exists kns.logs (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	at_date_time timestamp NULL default NOW(),
+	"level" varchar NULL,
+	source varchar NULL,
+	td float4,
+	page int4,
+	law_id varchar,
+	file_name varchar,
+	"comment" varchar NULL,
+	CONSTRAINT pk_sozd_logs PRIMARY KEY (id)
+);
+
+comment on TABLE kns.logs is 'LOG работы потока подкачки информации из ГД';
+COMMENT ON COLUMN kns.logs.id IS 'Идентификатор записи';
+COMMENT ON COLUMN kns.logs.at_date_time IS 'Время записи по Гринвичу';
+COMMENT ON COLUMN kns.logs.level IS 'Категория записи';
+COMMENT ON COLUMN kns.logs.source IS 'Источник сообщения записи';
+COMMENT ON COLUMN kns.logs.comment IS 'Комментарий события';
+COMMENT ON COLUMN kns.logs.page IS 'Обрабатываемая страница сайта ГД';
+COMMENT ON COLUMN kns.logs.law_id IS 'Идентификатор обрабатываемого закона';
+COMMENT ON COLUMN kns.logs.file_name IS 'Имя файла с документом';
+COMMENT ON COLUMN kns.logs.td IS 'Время выполнения операции (в секундах)';

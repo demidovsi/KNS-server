@@ -14,22 +14,19 @@ def send_get_request(url):
         "Accept": "application/json"
     }
     try:
-        response = requests.get(config.base_url + url, headers=headers, timeout=100)
-        if response.ok: # Check the response status code
+        response = requests.get(config.base_url + url, headers=headers, timeout=300)
+        if response.ok:  # Check the response status code
             # Try to parse the response JSON
             try:
                 data = response.json()  # Process the data as needed
                 return data, True, response.status_code
             except json.JSONDecodeError as e:
                 st = f"Error response: {e}"
-                # print(st)
                 return st, False, ''
         else:
             return response.text, False, response.status_code
-            # print(f"Request failed with status code {response.status_code}")
     except requests.RequestException as e:
         st = f"Request error: {e}"
-        # print(st)
         return st, False, ''
 
 
