@@ -1,0 +1,6 @@
+-- kns.get_url_bills source
+
+CREATE OR REPLACE VIEW kns.get_url_bills
+AS SELECT concat('https://main.knesset.gov.il/Activity/Legislation/Laws/Pages/LawBill.aspx?t=lawsuggestionssearch&lawitemid=', nsi_bill.id) AS concat,
+    nsi_bill.id AS billid
+   FROM kns.nsi_bill;

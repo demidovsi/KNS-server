@@ -358,15 +358,15 @@ entities = [
     #     {"field": "Ordinal"},
     #     {"field": "LastUpdatedDate", "str": 1}
     # ]},
-    {"endpoint": "KNS_BillName()", "function_name": "pw_nsi_billname", "fields": [
-        {"field": "BillNameID"},
-        {"field": "Name", "str": 1},
-        {"field": "BillID"},
-        {"field": "NameHistoryTypeID"},
-        {"field": "NameHistoryTypeDesc", "str": 1},
-        {"field": "LastUpdatedDate", "str": 1}
-    ]},
-    # {"endpoint": "KNS_Bill()", "function_name": "pw_nsi_bill", "skip": 3000, "fields": [
+    # {"endpoint": "KNS_BillName()", "function_name": "pw_nsi_billname", "fields": [
+    #     {"field": "BillNameID"},
+    #     {"field": "Name", "str": 1},
+    #     {"field": "BillID"},
+    #     {"field": "NameHistoryTypeID"},
+    #     {"field": "NameHistoryTypeDesc", "str": 1},
+    #     {"field": "LastUpdatedDate", "str": 1}
+    # ]},
+    # {"endpoint": "KNS_Bill()", "function_name": "pw_nsi_bill", "fields": [
     #     {"field": "BillID"},
     #     {"field": "KnessetNum"},
     #     {"field": "Name", "str": 1},
@@ -388,6 +388,11 @@ entities = [
     #     {"field": "PublicationSeriesFirstCallID"},
     #     {"field": "PublicationSeriesFirstCallDesc", "str": 1},
     #     {"field": "LastUpdatedDate", "str": 1}
+    # ]},
+    # {"endpoint": "KNS_MkSiteCode()", "function_name": "pw_nsi_mksitecode", "fields": [
+    #     {"field": "MKSiteCode"},
+    #     {"field": "KnsID"},
+    #     {"field": "SiteId"}
     # ]},
 
 ]

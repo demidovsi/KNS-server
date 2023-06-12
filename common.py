@@ -3,6 +3,7 @@ import requests
 import json
 import config
 import base64
+import time
 
 endpoint = "odata"
 token = None
@@ -127,3 +128,31 @@ def str1000(number, sep=' '):
         n = str(number)[::-1]
         return sep.join(n[i:i + 3] for i in range(0, len(n), 3))[::-1]
     return str(number)
+
+
+def write_log_db(level, src, msg, page=None, file_name='', law_id=None, td=None, write_to_db=True):
+    st_td = '' if td is None else "td=%.3f sec;" % td
+    st_file_name = '' if file_name is None or file_name == '' else 'file=' + file_name + ';'
+    st_law_id = '' if law_id is None else 'law_id=' + str(law_id) + ';'
+    st_page = '' if page is None or page == '' else 'page=' + str(page) + ';'
+    print(time.ctime() + ':', level + ';', src + ';', st_td, st_page, st_law_id, st_file_name, msg, flush=True)
+    if not write_to_db:
+        return
+    try:
+        page = 'NULL' if page is None or page == '' else page
+        law_id = '' if law_id is None else law_id
+        file_name = '' if file_name is None else file_name
+        td = 'NULL' if td is None else td
+        st = "insert into {schema}.logs (level, source, comment, page, law_id, file_name, td) values " \
+             "('{level}', '{source}', '{comment}', {page}, '{law_id}', '{file_name}', {td})".format(
+                schema=config.schema_name, level=level, source=src,
+                comment=msg.replace("'", '"'), page=page, law_id=law_id, file_name=file_name, td=td
+              )
+        answer, ok, status = send_rest('v1/NSI/script/execute', 'PUT', params=st, token_user=token)
+        if not ok:
+            print(time.ctime(), 'ERROR', str(answer))
+    except Exception as er:
+        print(time.ctime(), 'ERROR', 'write_log_db', f"{er}")
+
+
+# KNS_Bill()/?$filter=(LastUpdatedDate ge datetime'2023-06-08T00:00:00Z')

@@ -1,0 +1,22 @@
+CREATE OR REPLACE FUNCTION kns.pw_trans_data(fbillid integer, faction_date timestamp without time zone, faction_name text, faction_source text)
+ RETURNS text
+ LANGUAGE plpgsql
+AS $function$
+begin
+  begin
+  insert into kns.trans_data
+    (billid, action_date, action_name, action_source)
+       values
+    (fbillid, faction_date, faction_name, faction_source)
+      on conflict on constraint kns_trans_data_pk do
+  update set
+     action_source=faction_source;
+  return '';
+
+  EXCEPTION
+  WHEN others THEN
+      return format ('SQLSTATE: %%s %%s', sqlstate, sqlerrm);
+  end;
+end;
+ $function$
+;

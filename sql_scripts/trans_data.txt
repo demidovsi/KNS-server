@@ -1,0 +1,14 @@
+-- kns.trans_data definition
+
+-- Drop table
+
+-- DROP TABLE kns.trans_data;
+
+CREATE TABLE kns.trans_data (
+	billid int4 NULL,
+	action_date timestamp NULL,
+	action_name varchar NULL,
+	action_source varchar NULL,
+	job_insert_ts varchar NULL DEFAULT now()
+	CONSTRAINT kns_trans_data_pk PRIMARY KEY (billid, action_date, action_name)
+);
