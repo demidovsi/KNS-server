@@ -153,6 +153,3 @@ def write_log_db(level, src, msg, page=None, file_name='', law_id=None, td=None,
             print(time.ctime(), 'ERROR', str(answer))
     except Exception as er:
         print(time.ctime(), 'ERROR', 'write_log_db', f"{er}")
-
-
-# KNS_Bill()/?$filter=(LastUpdatedDate ge datetime'2023-06-08T00:00:00Z')
