@@ -1,6 +1,4 @@
 import threading
-import webbrowser
-
 import common as cd
 import config
 import time
@@ -8,12 +6,6 @@ import json
 import requests
 from requests.adapters import HTTPAdapter
 from bs4 import BeautifulSoup
-import re
-import webbrowser
-# from selenium import webdriver
-import urllib
-from requests_html import HTMLSession
-import requests_html
 
 
 http_adapter = HTTPAdapter(max_retries=3)
