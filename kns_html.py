@@ -85,7 +85,7 @@ class HtmlParserBill(threading.Thread):
         cd.write_log_db('LOAD', 'HtmlParserBill', 'Поток скачивания информации по законам КНЕССЕТ загружен')
 # прочитать список всех законов
         while True:
-            self.row_from = 12000  # сначала всех законов
+            self.row_from = 0  # сначала всех законов
             while self.load_row_count() and self.row_from < self.row_count:
                 t0 = time.time()
                 answer, ok, status = cd.send_rest(
